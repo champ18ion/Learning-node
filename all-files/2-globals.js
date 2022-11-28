@@ -11,4 +11,4 @@
 // print using setInteral
 setInterval(()=>{
   console.log('hello node.!')
-},2000);pw
+},2000);
