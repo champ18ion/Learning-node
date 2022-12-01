@@ -1,14 +1,13 @@
-const http = require('http');
+const EventEmitter = require('events');
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/') {
-    res.end('Welcome to our home page');
-  }
-  if (req.url === '/about') {
-    res.end('Here is our short history');
-  }
-  res.end(`<h1>Oops!</h1>
-  <p>We can't seem to find the page you are looking for</p>
-  <a href="/">back home</a>`);
+const customEmitter = new EventEmitter();
+
+customEmitter.on('response', (name, id) => {
+  console.log(`data recieve user ${name} ${id}`);
 });
-server.listen(5000);
+
+customEmitter.on('response', () => {
+  console.log(`some other logic`);
+});
+
+customEmitter.emit(`response`, 'kratos', 89);
